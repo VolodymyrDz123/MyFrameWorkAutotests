@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
-from .base_page import BasePage
-from .locators import ProductPageLocators
+from pages.base_page import BasePage
+from pages.locators import ProductPageLocators
 
 
 class ProductPage(BasePage):
@@ -18,3 +18,10 @@ class ProductPage(BasePage):
         expected_name = self.browser.find_element(By.XPATH, "//div[@class='col-sm-6 product_main']/p[@class='price_color']").text
         actual_name = self.browser.find_element(By.XPATH, "//div[@class='alertinner ']/p/strong").text
         return expected_name == actual_name
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
+
+    def should_disappear_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE)

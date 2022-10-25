@@ -15,9 +15,9 @@ class ProductPage(BasePage):
         assert expected_name == actual_name
 
     def should_be_correct_price(self):
-        expected_name = self.browser.find_element(By.XPATH, "//div[@class='col-sm-6 product_main']/p[@class='price_color']").text
-        actual_name = self.browser.find_element(By.XPATH, "//div[@class='alertinner ']/p/strong").text
-        return expected_name == actual_name
+        expected_price = self.browser.find_element(By.XPATH, "//div[@class='col-sm-6 product_main']/p[@class='price_color']").text
+        actual_price = self.browser.find_element(By.XPATH, "//div[@class='alertinner ']/p/strong").text
+        return expected_price == actual_price
 
     def should_not_be_success_message(self):
         assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
